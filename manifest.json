@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Follow GitHub Organization",
+  "version": "0.0.5",
+
+  "description": "Follow GitHub organizations and get activities on new repositories in your feed",
+
+  "permissions": [
+    "https://api.followgithub.org/*",
+    "storage",
+    "tabs",
+    "background"
+  ],
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "browser_action": { },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [{
+    "matches": ["https://github.com/*"],
+    "js": ["index.js"],
+    "run_at": "document_end"
+  }]
+}

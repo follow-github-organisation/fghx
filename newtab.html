@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Follow GitHub Organization</title>
+        <script src="temp.js"></script>
+        <script src="uikit.min.js"></script>
+        <link rel="stylesheet" href="uikit.min.css" />
+        <script type="text/css">
+            html { height:100%; }
+            body { position:absolute; top:0; bottom:0; right:0; left:0; }
+        </script>
+    </head>
+
+    <body>
+        <div class="uk-height-viewport uk-background-muted uk-padding-large">
+            <div class="uk-flex uk-flex-center">
+                <div class="uk-grid-match" uk-grid style="width: 700px;">
+                    <span class="uk-label uk-align-center uk-margin-bottom uk-text-bold uk-text-center uk-padding-small">
+                        <a target="_blank" class="uk-text-capitalize uk-text-bold label-link-text" style="color: white;" href="http://followgithub.org/?ref=chrome-extension-label">FOLLOW GITHUB ORGANIZATION</a>
+                    </span>
+
+                    <div style="width: inherit;">
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <div id="form-loader" uk-spinner="ratio: 1" style="display: none; position: relative; left: 50%; right: 50%;"></div>
+                            <div class="uk-margin">
+                                <input id="user_token" class="uk-input uk-margin-bottom" type="text" placeholder="GitHub personal access token">
+                                <input id="user_license" class="uk-input uk-margin-bottom" type="text" placeholder="Supporter license key (optional)">
+                                <button id="form-submit-btn" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-small-bottom">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin-bottom" style="width: inherit;">
+                        <div id="initial-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p>
+                                <a href="https://github.com/settings/tokens/new?scopes=user:email&description=Follow-GitHub-Organization" target="_blank"><b>Collect your personal access token</b></a> (Will only read your email address)
+                            </p>
+                        </div>
+
+                        <div id="activation-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success">
+                                Super! Now go to an organization's page (try <a href="https://github.com/microsoft" target="_blank">MicroSoft</a>) and click on the "Follow" button on top right
+                            </p>
+                        </div>
+
+                        <div id="adopter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success"></p>
+                            <progress class="uk-progress" value="" max="10"></progress>
+                        </div>
+
+                        <div id="pre-supporter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-danger uk-text-center">
+                                You have reached the adopter limit of 10 organizations. Purchase a license to follow more.
+                                <br>
+                                <span class="uk-text-success">Be a supporter.</span>
+                            </p>
+                        </div>
+
+                        <div id="supporter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success"></p>
+                        </div>
+
+                        <div id="buy-license-container" class="uk-card uk-card-default uk-card-body">
+                            <a class="uk-button uk-button-primary uk-visible@m" target="_blank" href="https://pay.paddle.com/checkout/564726" uk-scroll><img src="data:image/svg+xml;base64,PHN2ZyBpZD0iZW1vamkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDcyIDcyIj4KICA8ZyBpZD0iY29sb3IiPgogICAgPHBhdGggZmlsbD0iIzkyRDNGNSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZD0iTTU5Ljk1ODksNTIuNzk0M0gxMi4wNDExIGMtMC41NTIzLDAtMS0wLjQ0NzctMS0xdi0yOS41NDdjMC0wLjU1MjMsMC40NDc3LTEsMS0xaDQ3LjkxNzhjMC41NTIzLDAsMSwwLjQ0NzcsMSwxdjI5LjU0NyBDNjAuOTU4OSw1Mi4zNDY2LDYwLjUxMTIsNTIuNzk0Myw1OS45NTg5LDUyLjc5NDN6Ii8+CiAgICA8cGF0aCBmaWxsPSIjM0YzRjNGIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNjAsMzFIMTJjLTAuNTUyMywwLTEtMC40NDc3LTEtMXYtMi44IGMwLTAuNTUyMywwLjQ0NzctMSwxLTFoNDhjMC41NTIzLDAsMSwwLjQ0NzcsMSwxVjMwQzYxLDMwLjU1MjMsNjAuNTUyMywzMSw2MCwzMXoiLz4KICAgIDxwYXRoIGZpbGw9IiNGQ0VBMkIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgZD0iTTIwLjk5ODQsNDcuOGgtMS45NDcxYy0xLjY2NDUsMC0zLjAyNjQtMS4zNjE5LTMuMDI2NC0zLjAyNjR2LTEuOTQ3MWMwLTEuNjY0NSwxLjM2MTktMy4wMjY1LDMuMDI2NC0zLjAyNjVoMS45NDcxIGMxLjY2NDUsMCwzLjAyNjQsMS4zNjE5LDMuMDI2NCwzLjAyNjV2MS45NDcxQzI0LjAyNDksNDYuNDM4MSwyMi42NjMsNDcuOCwyMC45OTg0LDQ3Ljh6Ii8+CiAgPC9nPgogIDxnIGlkPSJoYWlyIi8+CiAgPGcgaWQ9InNraW4iLz4KICA8ZyBpZD0ic2tpbi1zaGFkb3ciLz4KICA8ZyBpZD0ibGluZSI+CiAgICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNTkuOTU4OSw1Mi43OTQzSDEyLjA0MTEgYy0wLjU1MjMsMC0xLTAuNDQ3Ny0xLTF2LTI5LjU0N2MwLTAuNTUyMywwLjQ0NzctMSwxLTFoNDcuOTE3OGMwLjU1MjMsMCwxLDAuNDQ3NywxLDF2MjkuNTQ3IEM2MC45NTg5LDUyLjM0NjYsNjAuNTExMiw1Mi43OTQzLDU5Ljk1ODksNTIuNzk0M3oiLz4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik02MCwzMUgxMmMtMC41NTIzLDAtMS0wLjQ0NzctMS0xdi0yLjggYzAtMC41NTIzLDAuNDQ3Ny0xLDEtMWg0OGMwLjU1MjMsMCwxLDAuNDQ3NywxLDFWMzBDNjEsMzAuNTUyMyw2MC41NTIzLDMxLDYwLDMxeiIvPgogICAgPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMjAuOTk4NCw0Ny44aC0xLjk0NzFjLTEuNjY0NSwwLTMuMDI2NC0xLjM2MTktMy4wMjY0LTMuMDI2NHYtMS45NDcxYzAtMS42NjQ1LDEuMzYxOS0zLjAyNjUsMy4wMjY0LTMuMDI2NWgxLjk0NzEgYzEuNjY0NSwwLDMuMDI2NCwxLjM2MTksMy4wMjY0LDMuMDI2NXYxLjk0NzFDMjQuMDI0OSw0Ni40MzgxLDIyLjY2Myw0Ny44LDIwLjk5ODQsNDcuOHoiLz4KICA8L2c+Cjwvc3ZnPgo=" width="32" height="32" alt="" uk-img>Buy supporter license to follow more than 10 organizations</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
