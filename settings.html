@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Follow GitHub Organization</title>
+        <script src="js/uikit.min.js"></script>
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script type="text/css">
+            html { height:100%; }
+            body { position:absolute; top:0; bottom:0; right:0; left:0; }
+        </script>
+    </head>
+
+    <body>
+        <div class="uk-height-viewport uk-background-muted uk-padding-large">
+            <div class="uk-flex uk-flex-center">
+                <div class="uk-grid-match" uk-grid style="width: 700px;">
+                    <!--<span class="uk-label uk-align-center uk-margin-bottom uk-text-bold uk-text-center uk-padding-small">-->
+                        <!--<a target="_blank" class="uk-text-capitalize uk-text-bold label-link-text" style="color: white;" href="http://followgithub.org/?ref=chrome-extension-label">FOLLOW GITHUB ORGANIZATION</a>-->
+                    <!--</span>-->
+
+                    <div class="uk-margin-bottom" style="width: inherit;">
+                        <div id="initial-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p>
+                                <a href="https://github.com/settings/tokens/new?scopes=user:email&description=Follow-GitHub-Organization (Generate token below)" target="_blank"><b>Click here to collect your personal access token</b></a> (Will only read your email address)
+                            </p>
+                        </div>
+
+                        <div id="activation-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success">
+                                Super! Now go to an organization's page (try <a href="https://github.com/microsoft" target="_blank">MicroSoft</a>) and click on the "Follow" button on top right
+                            </p>
+                        </div>
+
+                        <div id="adopter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success"></p>
+                            <progress class="uk-progress" value="" max="10"></progress>
+                        </div>
+
+                        <div id="pre-supporter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-danger uk-text-center">
+                                You have reached the adopter limit of 10 organizations. Purchase a license to follow more.
+                                <br>
+                                <span class="uk-text-success">Be a supporter.</span>
+                            </p>
+                        </div>
+
+                        <div id="supporter-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
+                            <p class="uk-text-success"></p>
+                        </div>
+                    </div>
+
+
+                    <div style="width: inherit;">
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <div id="form-loader" uk-spinner="ratio: 1" style="display: none; position: relative; left: 50%; right: 50%;"></div>
+                            <div class="uk-margin">
+                                <input id="user_token" class="uk-input uk-margin-bottom" type="text" placeholder="GitHub personal access token">
+                                <input id="user_license" class="uk-input uk-margin-bottom" type="text" placeholder="Supporter license key (optional)">
+                                <button id="form-submit-btn" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-small-bottom">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin-bottom" style="width: inherit;">
+                        <div id="buy-license-container" class="uk-card uk-card-default uk-card-body">
+                            <a class="uk-button uk-button-primary uk-visible@m" target="_blank" href="https://pay.paddle.com/checkout/564726">Buy supporter license to follow more than 10 organizations</a>
+                        </div>
+                    </div>
+
+                    <p class="uk-align-center">
+                        <a target="_blank" href="https://twitter.com/hackpravj">Follow GitHub Organization by @hackpravj</a>
+                         •
+                        <a target="_blank" href="https://github.com/follow-github-organisation">GitHub</a>
+                         •
+                        <a target="_blank" href="https://github.com/follow-github-organisation/fghx/issues">Report issue</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/settings.js"></script>
+</html>

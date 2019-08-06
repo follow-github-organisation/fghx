@@ -1,29 +1,40 @@
+// window.onload = function () {
 const host = 'https://api.followgithub.org/v1';
 
-
+// decide the help text visibility on the basis of token value and following count
 chrome.storage.sync.get(function(storage_result) {
-    console.log(storage_result);
-
     // remove editable access for user_license field
     if (storage_result.user_license !== undefined) {
-        // remove editable access for user_license field
-        document.getElementById('user_license').disabled = true;
-        document.getElementById('user_license').placeholder = storage_result.user_license;
-        document.getElementById('user_license').value = storage_result.user_license;
+        const checkExist = setInterval(function() {
+            const userLicenseElement = document.getElementById('user_license');
+            if (userLicenseElement !== null) {
+                // remove editable access for user_license field
+                document.getElementById('user_license').disabled = true;
+                document.getElementById('user_license').placeholder = storage_result.user_license;
+                document.getElementById('user_license').value = storage_result.user_license;
+
+                clearInterval(checkExist);
+            }
+        }, 500);
     }
 
     // remove editable access for user_token field
     if (storage_result.user_token !== undefined) {
-        // remove editable access for user_license field
-        document.getElementById('user_token').disabled = true;
-        document.getElementById('user_token').placeholder = storage_result.user_token;
-        document.getElementById('user_token').value = storage_result.user_token;
-    }
-});
+        const checkExist = setInterval(function() {
+            const userTokenElement = document.getElementById('user_token');
+            if (userTokenElement !== null) {
+                // remove editable access for user_license field
+                document.getElementById('user_token').disabled = true;
+                document.getElementById('user_token').placeholder = storage_result.user_token;
+                document.getElementById('user_token').value = storage_result.user_token;
 
-// decide the help text visibility on the basis of token value and following count
-chrome.storage.sync.get(function(storage_result) {
-    console.log(storage_result.user_license, 'storage result');
+                // enable loader
+                document.getElementById("form-loader").style.display = 'none';
+
+                clearInterval(checkExist);
+            }
+        }, 500);
+    }
 
     // if license is present
     if (storage_result.user_license !== undefined) {
@@ -43,12 +54,9 @@ chrome.storage.sync.get(function(storage_result) {
         document.getElementById("buy-license-container").style.display = "none";
     } else {
         /* license is not present */
-        console.log('license is not present');
 
         // if token is not present
         if (storage_result.user_token === undefined) {
-            console.log('user token is empty');
-
             // show the initial help text
             document.getElementById("initial-help-text").style.display = "block";
 
@@ -58,8 +66,6 @@ chrome.storage.sync.get(function(storage_result) {
             document.getElementById("pre-supporter-help-text").style.display = "none";
             document.getElementById("supporter-help-text").style.display = "none";
         } else {
-            console.log('user token is not empty');
-
             // remove editable access for user_token field
             document.getElementById('user_token').disabled = true;
             document.getElementById('user_token').placeholder = storage_result.user_token;
@@ -67,8 +73,6 @@ chrome.storage.sync.get(function(storage_result) {
 
             // if there are no organizations followed
             if (storage_result.following_count === undefined) {
-                console.log('following count is undefined');
-
                 // show the activation help text
                 document.getElementById("activation-help-text").style.display = "block";
 
@@ -78,8 +82,6 @@ chrome.storage.sync.get(function(storage_result) {
                 document.getElementById("pre-supporter-help-text").style.display = "none";
                 document.getElementById("supporter-help-text").style.display = "none";
             } else if (storage_result.following_count < 10) {
-                console.log('following count is <10');
-
                 // show the adopter help text
                 document.getElementById("adopter-help-text").style.display = "block";
 
@@ -95,8 +97,6 @@ chrome.storage.sync.get(function(storage_result) {
                 document.getElementById("pre-supporter-help-text").style.display = "none";
                 document.getElementById("supporter-help-text").style.display = "none";
             } else if (storage_result.following_count === 10) {
-                console.log('following count is 10');
-
                 // show the adopter help text
                 document.getElementById("pre-supporter-help-text").style.display = "block";
 
@@ -106,8 +106,6 @@ chrome.storage.sync.get(function(storage_result) {
                 document.getElementById("adopter-help-text").style.display = "none";
                 document.getElementById("supporter-help-text").style.display = "none";
             } else if (storage_result.following_count > 10) {
-                console.log('following count is >10');
-
                 // show the supporter help text
                 document.getElementById("supporter-help-text").style.display = "block";
 
@@ -129,13 +127,12 @@ chrome.storage.sync.get(function(storage_result) {
 
 // add the access token in storage if valid
 function addUserToken(userToken) {
+    console.log('add user token');
     // remove danger style from input if present before adding new value
     document.getElementById("user_token").classList.remove('uk-form-danger');
 
     // enable loader
     document.getElementById("form-loader").style.display = 'block';
-
-    console.log(userToken);
 
     const url = host + "/user/token";
 
@@ -241,6 +238,7 @@ function addUserLicense(userToken, userLicense) {
     };
     xhr.send();
 }
+// };
 
 document.addEventListener('DOMContentLoaded', function() {
     // reference to the form submit button
@@ -249,19 +247,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // handle click on the form submit button
     formSubmitButton.addEventListener('click', function() {
 
+        console.log('click on form submit');
+
         // check as per the value of stored token and license
         chrome.storage.sync.get(function (items) {
             // value of the user token input field
             const userTokenInput = document.getElementById("user_token").value;
-            console.log('user token input', userTokenInput);
 
             // value of the user license input field
             const userLicenseInput = document.getElementById("user_license").value;
-            console.log('user license input', userLicenseInput);
 
             // value of the stored token
             const userTokenStorage = items.user_token;
-            console.log('user token storage', userTokenStorage);
 
             // if token is not stored, need to add it first, can not add license yet
             if (userTokenStorage === undefined) {
@@ -271,7 +268,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById("user_token").classList.add('uk-form-danger');
                 } else {
                     // add the user token if it's valid
-                    console.log('calling function to add user token');
                     addUserToken(userTokenInput);
                 }
             } else {
@@ -283,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById("user_license").classList.add('uk-form-danger');
                 } else {
                     // add the user license if it's valid
-                    console.log('calling function to add user license');
                     addUserLicense(userTokenStorage, userLicenseInput);
                 }
             }

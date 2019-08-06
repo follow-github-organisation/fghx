@@ -15,10 +15,8 @@ let org_username = '';
 // Update the page status if the nav element is missing
 if (orgnav === null) {
     isOrgPage = false;
-    console.log('not org');
 } else {
     org_username = document.querySelector("meta[property='profile:username']").getAttribute("content");
-    console.log('org');
 }
 
 // Convert a timestamp to required format for the title
@@ -74,7 +72,7 @@ function addActivities(activities) {
                             <div class="d-flex flex-column width-full">
                                 <div class="d-flex flex-items-baseline">
                                     <div>
-                                        <a class="link-gray-dark no-underline text-bold wb-break-all d-inline-block" href="/` + activityCursor.org_username + `">` + activityCursor.org_username + `</a>
+                                        <a class="link-gray-dark no-underline text-bold wb-break-all d-inline-block" href=` + activityCursor.org_username + `"/">` + activityCursor.org_username + `</a>
 
                                         created a
                                         repository
@@ -132,7 +130,6 @@ function getActivities(lastActivityTimestamp) {
         // disallow feed activity collection if user_token is missing
         // TODO: Find if we can change the extension icon with red color (to show error)
         if (items.user_token === undefined) {
-            console.log('not checking the feed');
             return;
         }
 
@@ -175,7 +172,6 @@ function followOrg() {
         xhr.setRequestHeader('user_token', items.user_token);
 
         xhr.onload = function () {
-            console.log(xhr, 'response');
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Save the following relation in storage
                 chrome.storage.sync.set({[org_username]:"following"}, function() {});
@@ -195,10 +191,10 @@ function followOrg() {
                 document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
             } else if (xhr.readyState === 4 && xhr.status === 403) {
                 // open the extension page and ask user to generate a valid token
-                // chrome.tabs.create({ url: chrome.extension.getURL('newtab.html'), active: true });
+                // chrome.tabs.create({ url: chrome.extension.getURL('settings.html'), active: true });
 
                 chrome.runtime.sendMessage({event: "open_extension_tab"}, function(response) {
-                    console.log(response.status);
+                    // console.log(response.status);
                 });
 
                 // Change the button text if the follow operation was not successful
