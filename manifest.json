@@ -1,15 +1,20 @@
 {
   "manifest_version": 2,
   "name": "Follow GitHub Organization",
-  "version": "0.0.6",
+  "version": "0.0.7",
 
   "description": "Follow GitHub organizations and get activities on new repositories in your feed",
+
+  "applications": {
+    "gecko": {
+      "id": "fghx@followgithub"
+    }
+  },
 
   "permissions": [
     "https://api.followgithub.org/*",
     "storage",
-    "tabs",
-    "background"
+    "tabs"
   ],
 
   "icons": {
@@ -21,7 +26,7 @@
   "browser_action": { },
   "background": {
     "scripts": ["js/background.js"],
-    "persistent": false
+    "persistent": true
   },
 
   "content_scripts": [{
