@@ -1,7 +1,7 @@
 fgh-extension
 =============
+Browser extension for Follow GitHub Organization
 
-## TODO
+---
 
-- addUserToken method in settings.js should hit new url /api/user/ and add/error accordingly
--
+[Pravendra Singh](https://twitter.com/hackpravj)
