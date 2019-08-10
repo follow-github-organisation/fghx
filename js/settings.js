@@ -146,7 +146,7 @@ function addUserToken(userToken) {
             chrome.storage.sync.set({"user_token":userToken}, function () {
                 // add notification with the success response text
                 parsedResponsePayload = JSON.parse(xhr.responseText);
-                UIkit.notification('<span class="uk-label uk-label-success">' + parsedResponsePayload.message + '</span>');
+                UIkit.notification('<span class="uk-padding-small uk-label uk-label-success" style="position:relative;left:0%">' + parsedResponsePayload.message + '</span>');
 
                 // disable loader
                 document.getElementById("form-loader").style.display = 'none';
@@ -171,7 +171,7 @@ function addUserToken(userToken) {
         } else if (xhr.readyState === 4 && xhr.status === 403) {
             // add notification with the failure response text
             parsedResponsePayload = JSON.parse(xhr.responseText);
-            UIkit.notification('<span class="uk-label uk-label-success">' + parsedResponsePayload.message + '</span>');
+            UIkit.notification('<span class="uk-padding-small uk-label uk-label-success" style="position:relative;left:0%">' + parsedResponsePayload.message + '</span>');
         }
     };
     xhr.send();
@@ -200,7 +200,7 @@ function addUserLicense(userToken, userLicense) {
                 chrome.storage.sync.get('following_count', function (following_count_result) {
                     // add notification with the success response text
                     parsedResponsePayload = JSON.parse(xhr.responseText);
-                    UIkit.notification('<span class="uk-label uk-label-success">' + parsedResponsePayload.message + '</span>');
+                    UIkit.notification('<span class="uk-padding-small uk-label uk-label-success" style="position:relative;left:0%">' + parsedResponsePayload.message + '</span>');
 
                     // disable loader
                     document.getElementById("form-loader").style.display = 'none';
@@ -233,7 +233,7 @@ function addUserLicense(userToken, userLicense) {
         } else if (xhr.readyState === 4 && xhr.status === 403) {
             // add notification with the failure response text
             parsedResponsePayload = JSON.parse(xhr.responseText);
-            UIkit.notification('<span class="uk-label uk-label-success">' + parsedResponsePayload.message + '</span>');
+            UIkit.notification('<span class="uk-padding-small uk-label uk-label-success" style="position:relative;left:0%">' + parsedResponsePayload.message + '</span>');
         }
     };
     xhr.send();
