@@ -74,6 +74,8 @@ function addActivities(activities) {
                                     <div>
                                         <a class="link-gray-dark no-underline text-bold wb-break-all d-inline-block" href=` + activityCursor.org_username + `"/">` + activityCursor.org_username + `</a>
 
+                                        <span class="Label Label--outline">org</span>
+
                                         created a
                                         repository
     
