@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Follow GitHub Organization",
-  "version": "0.0.7",
+  "version": "0.0.9",
 
   "description": "Follow GitHub organizations and get activities on new repositories in your feed",
 

@@ -72,7 +72,7 @@ function addActivities(activities) {
                             <div class="d-flex flex-column width-full">
                                 <div class="d-flex flex-items-baseline">
                                     <div>
-                                        <a class="link-gray-dark no-underline text-bold wb-break-all d-inline-block" href=` + activityCursor.org_username + `"/">` + activityCursor.org_username + `</a>
+                                        <a class="link-gray-dark no-underline text-bold wb-break-all d-inline-block" href="/` + activityCursor.org_username + `">` + activityCursor.org_username + `</a>
 
                                         <span class="Label Label--outline">org</span>
 
