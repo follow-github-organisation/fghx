@@ -1,5 +1,5 @@
-fgh-extension
-=============
+fghx
+====
 Browser extension for Follow GitHub Organization
 
 ---
