@@ -1,4 +1,4 @@
-# <img src="https://avatars2.githubusercontent.com/u/47492807?s=50&v=4" width="45" align="left"> Refined GitHub
+# <img src="https://avatars2.githubusercontent.com/u/47492807?s=50&v=4" width="45" align="left"> fghx
 
 [link-cws]: https://chrome.google.com/webstore/detail/follow-github-organizatio/nihhgppianmnaaomafdoemomnnpdnfjn "Version published on Chrome Web Store"
 [link-fao]: https://addons.mozilla.org/en-US/firefox/addon/follow-github-organization/ "Version published on Firefox Add-ons"
@@ -9,6 +9,8 @@ The native GitHub experience doesn't provide a mechanism to follow an organizati
 [Follow GitHub Organization](https://followgithub.org) gives you ~wings~ the power you deserve.
 
 We hope that GitHub will notice and implement this [long-awaited feature request](https://github.com/isaacs/github/issues/50).
+
+> Create the pull request you want to see in a repository — *Mahatma Gandhi*
 
 ## Install
 
