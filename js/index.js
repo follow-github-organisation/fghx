@@ -154,43 +154,45 @@ function getActivities(lastActivityTimestamp) {
     });
 }
 
-// Follow a requested organization
-function followOrg() {
+// Unfollow a requested organization
+function unfollowOrg() {
     chrome.storage.sync.get(function (items) {
-        // do not follow if the organization is already followed
-        if (items[org_username] === 'following') {
-            return;
-        }
-
         // Change the button text before starting to follow
-        document.getElementById("fgh-follow-button").innerText = 'Following';
+        document.getElementById("fgh-follow-button").innerText = 'Loading..';
         // Disable the button
         document.getElementById('fgh-follow-button').classList.add('disabled');
 
         const url = host + "/organizations/following/" + org_username;
 
         let xhr = new XMLHttpRequest();
-        xhr.open("PUT", url, true);
+        xhr.open("DELETE", url, true);
         xhr.setRequestHeader('user_token', items.user_token);
 
         xhr.onload = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // Save the following relation in storage
-                chrome.storage.sync.set({[org_username]:"following"}, function() {});
+                // Save the following relation in storage and update the button
+                chrome.storage.sync.set({[org_username]:"unfollowing"}, function() {
+                    // Change the button text after following
+                    document.getElementById("fgh-follow-button").innerText = 'Follow';
+                    // Enable the button
+                    document.getElementById('fgh-follow-button').classList.remove('disabled');
+                });
 
                 // Update organization following count
-                if (items.following_count === undefined) {
-                    // Set to 1 for the first organization followed
-                    chrome.storage.sync.set({'following_count': 1}, function() {});
-                } else {
-                    // Increment if more than 1 organization followed
-                    chrome.storage.sync.set({'following_count': items.following_count + 1}, function() {});
+                if (items.following_count !== 0) {
+                    // Decrease followed organization count
+                    chrome.storage.sync.set({'following_count': items.following_count - 1}, function() {});
                 }
 
                 // Add tooltip to showcase the successful following operation
-                document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Super! You will get the activities in feed');
+                document.getElementById('fgh-follow-button').setAttribute('aria-label', 'OK! You will not get activities for this organization');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
+
+                // Update tooltip content after transaction is success (added delay)
+                setTimeout(function () {
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Follow to get activities for this organization');
+                }, 1500);
             } else if (xhr.readyState === 4 && xhr.status === 403) {
                 // open the extension page and ask user to generate a valid token
                 // chrome.tabs.create({ url: chrome.extension.getURL('settings.html'), active: true });
@@ -200,25 +202,125 @@ function followOrg() {
                 });
 
                 // Change the button text if the follow operation was not successful
-                document.getElementById("fgh-follow-button").innerText = 'Follow';
+                document.getElementById("fgh-follow-button").innerText = 'Unfollow';
 
                 // Add tooltip to showcase the failing following operation
                 document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Some problem with the operation!');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
                 document.getElementById('fgh-follow-button').classList.remove('disabled');
+
+                // Update tooltip content after transaction is failed (added delay)
+                setTimeout(function () {
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Unfollow to stop receiving activities for this organization');
+                }, 1500);
             } else {
                 // Change the button text if the follow operation was not successful
-                document.getElementById("fgh-follow-button").innerText = 'Follow';
+                document.getElementById("fgh-follow-button").innerText = 'Unfollow';
 
                 // Add tooltip to showcase the failing following operation
                 document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Some problem with the operation!');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped');
                 document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
                 document.getElementById('fgh-follow-button').classList.remove('disabled');
+
+                // Update tooltip content after transaction is failed (added delay)
+                setTimeout(function () {
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Unfollow to stop receiving activities for this organization');
+                }, 1500);
             }
         };
         xhr.send();
+    });
+}
+
+// Follow a requested organization
+function followOrg() {
+    chrome.storage.sync.get(function (items) {
+        // unfollow if the organization is already followed
+        if (items[org_username] === 'following') {
+            unfollowOrg();
+        } else {
+            // follow if the organization is not followed
+
+            // Change the button text before starting to follow
+            document.getElementById("fgh-follow-button").innerText = 'Loading..';
+            // Disable the button
+            document.getElementById('fgh-follow-button').classList.add('disabled');
+
+            const url = host + "/organizations/following/" + org_username;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT", url, true);
+            xhr.setRequestHeader('user_token', items.user_token);
+
+            xhr.onload = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Save the following relation in storage and update the button
+                    chrome.storage.sync.set({[org_username]:"following"}, function() {
+                        // Change the button text after following
+                        document.getElementById("fgh-follow-button").innerText = 'Unfollow';
+                        // Enable the button
+                        document.getElementById('fgh-follow-button').classList.remove('disabled');
+                    });
+
+                    // Update organization following count
+                    if (items.following_count === undefined) {
+                        // Set to 1 for the first organization followed
+                        chrome.storage.sync.set({'following_count': 1}, function() {});
+                    } else {
+                        // Increment if more than 1 organization followed
+                        chrome.storage.sync.set({'following_count': items.following_count + 1}, function() {});
+                    }
+
+                    // Add tooltip to showcase the successful following operation
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Super! You will get the activities in feed');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
+
+                    // Update tooltip content after transaction is success (added delay)
+                    setTimeout(function () {
+                        document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Unfollow to stop receiving activities for this organization');
+                    }, 1500);
+                } else if (xhr.readyState === 4 && xhr.status === 403) {
+                    // open the extension page and ask user to generate a valid token
+                    // chrome.tabs.create({ url: chrome.extension.getURL('settings.html'), active: true });
+
+                    chrome.runtime.sendMessage({event: "open_extension_tab"}, function(response) {
+                        // console.log(response.status);
+                    });
+
+                    // Change the button text if the follow operation was not successful
+                    document.getElementById("fgh-follow-button").innerText = 'Follow';
+
+                    // Add tooltip to showcase the failing following operation
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Some problem with the operation!');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
+                    document.getElementById('fgh-follow-button').classList.remove('disabled');
+
+                    // Update tooltip content after transaction is success (added delay)
+                    setTimeout(function () {
+                        document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Follow to get activities for this organization');
+                    }, 1500);
+                } else {
+                    // Change the button text if the follow operation was not successful
+                    document.getElementById("fgh-follow-button").innerText = 'Follow';
+
+                    // Add tooltip to showcase the failing following operation
+                    document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Some problem with the operation!');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped');
+                    document.getElementById('fgh-follow-button').classList.add('tooltipped-s');
+                    document.getElementById('fgh-follow-button').classList.remove('disabled');
+
+                    // Update tooltip content after transaction is success (added delay)
+                    setTimeout(function () {
+                        document.getElementById('fgh-follow-button').setAttribute('aria-label', 'Follow to get activities for this organization');
+                    }, 1500);
+                }
+            };
+            xhr.send();
+        }
     });
 }
 
@@ -229,13 +331,13 @@ if (isOrgPage) {
 
     // Update text of the follow button as per the previous interactions
     chrome.storage.sync.get([org_username], function(items){
-        followButtonText = items[org_username] === 'following' ? 'Following' : 'Follow';
+        followButtonText = items[org_username] === 'following' ? 'Unfollow' : 'Follow';
 
         // Add a follow button in the main navigation if it's an organization page
-        if (followButtonText === "Following") {
-            navigationButtonHTML = '<a class="btn ml-3 float-right disabled tooltipped tooltipped-s" id="fgh-follow-button" aria-label="Super! You will get the activities in feed">' + followButtonText + '</a>';
+        if (followButtonText === "Unfollow") {
+            navigationButtonHTML = '<a class="btn ml-3 float-right tooltipped tooltipped-s" id="fgh-follow-button" aria-label="Unfollow to stop receiving activities for this organization">' + followButtonText + '</a>';
         } else {
-            navigationButtonHTML = '<a class="btn ml-3 float-right" id="fgh-follow-button">' + followButtonText + '</a>';
+            navigationButtonHTML = '<a class="btn ml-3 float-right tooltipped tooltipped-s" id="fgh-follow-button" aria-label="Follow to get activities for this organization">' + followButtonText + '</a>';
         }
         orgnav.insertAdjacentHTML('beforeend', navigationButtonHTML);
 

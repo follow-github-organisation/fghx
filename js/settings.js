@@ -127,6 +127,9 @@ chrome.storage.sync.get(function(storage_result) {
 
 // add the access token in storage if valid
 function addUserToken(userToken) {
+    // trim spaces if any from the token
+    userToken = userToken.trim();
+
     console.log('add user token');
     // remove danger style from input if present before adding new value
     document.getElementById("user_token").classList.remove('uk-form-danger');
@@ -179,6 +182,12 @@ function addUserToken(userToken) {
 
 // add the license key for a given user token in storage if valid
 function addUserLicense(userToken, userLicense) {
+    // trim spaces if any from the token
+    userToken = userToken.trim();
+
+    // trim spaces if any from license
+    userLicense = userLicense.trim();
+
     // remove danger style from input if present before adding new value
     document.getElementById("user_license").classList.remove('uk-form-danger');
 
