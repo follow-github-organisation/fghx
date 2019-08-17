@@ -20,6 +20,12 @@
                     <!--</span>-->
 
                     <div class="uk-margin-bottom" style="width: inherit;">
+                        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding-remove uk-margin-bottom" style="background: transparent; box-shadow: none;">
+                            <p>
+                                <img data-src="images/announcement-2.svg" width="32" height="32" alt="" uk-img><img data-src="images/announcement-1.svg" width="32" height="32" alt="" uk-img>The extension is now <a href="https://github.com/follow-github-organisation/fghx" target="_blank">open source</a>, contribute and win a supporter license <img data-src="images/key.svg" width="32" height="32" alt="" uk-img>
+                            </p>
+                        </div>
+
                         <div id="initial-help-text" class="uk-card uk-card-default uk-card-body uk-text-center">
                             <p>
                                 <a href="https://github.com/settings/tokens/new?scopes=user:email&description=Follow-GitHub-Organization (Generate token below)" target="_blank"><b>Click here to collect your personal access token</b></a> (Will only read your email address)
@@ -55,7 +61,7 @@
                         <div class="uk-card uk-card-default uk-card-body">
                             <div id="form-loader" uk-spinner="ratio: 1" style="display: none; position: relative; left: 50%; right: 50%;"></div>
                             <div class="uk-margin">
-                                <input id="user_token" class="uk-input uk-margin-bottom" type="text" placeholder="GitHub personal access token">
+                                <input id="user_token" class="uk-input uk-margin-bottom" type="text" placeholder="GitHub personal access token (required)">
                                 <input id="user_license" class="uk-input uk-margin-bottom" type="text" placeholder="Supporter license key (optional)">
                                 <button id="form-submit-btn" class="uk-button uk-button-secondary uk-width-1-1 uk-margin-small-bottom">Save</button>
                             </div>
