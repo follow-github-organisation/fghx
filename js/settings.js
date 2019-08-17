@@ -110,7 +110,7 @@ chrome.storage.sync.get(function(storage_result) {
                 document.getElementById("supporter-help-text").style.display = "block";
 
                 // add sentence to show
-                document.querySelector('#supporter-help-text > p').textContent = "You have followed " + storage_result.following_count + " organizations";
+                document.querySelector('#supporter-help-text > p').textContent = "Hey Supporter! You have followed " + storage_result.following_count + " organizations";
 
                 // hide other help text
                 document.getElementById("initial-help-text").style.display = "none";
