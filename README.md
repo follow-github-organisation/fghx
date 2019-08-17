@@ -14,8 +14,24 @@ We hope that GitHub will notice and implement this [long-awaited feature request
 
 - [**Chrome** extension][link-cws] <img src="https://followgithub.org/images/chrome-icon.svg" width="16" heigh="16">
 - [**Firefox** add-on][link-fao] <img src="https://followgithub.org/images/firefox-icon.svg" width="16" heigh="16">
-- **Opera** extension <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Opera_2015_logo.svg/219px-Opera_2015_logo.svg.png" width="16" heigh="16">: Use [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to install the Chrome version.
-- **Brave** extension <img src="https://brave.com/wp-content/uploads/2019/01/logotype-full-color.svg" width="16" heigh="16">: Compatible with the Chrome version.
+- **Opera** extension <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Opera_2015_logo.svg/219px-Opera_2015_logo.svg.png" width="32" heigh="32">: Use [this Opera extension](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) to install the Chrome version.
+- **Brave** extension <img src="https://brave.com/wp-content/uploads/2019/01/logotype-full-color.svg" width="32" heigh="32">: [Compatible with the Chrome version](https://support.brave.com/hc/en-us/articles/360017909112-How-can-I-add-extensions-to-Brave-)
+
+## How to follow an organization?
+
+Go to an organization page, click on the "Follow" button in the top right if you want to see the new activities by that organization in your feed.
+
+![Following an organization](https://followgithub.org/images/github-follow-action.gif)
+
+## Where will the activity be shown?
+
+Whenever a new repository is created in your followed organizations. The activity will be added to your main GitHub feed.
+
+![Activity display](https://followgithub.org/images/github-new-repo.png)
+
+## Contribute
+
+Contribute to the extension and win a supporter license :key:.
 
 ---
 
