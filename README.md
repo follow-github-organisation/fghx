@@ -29,7 +29,7 @@ Go to an organization page, click on the "Follow" button in the top right if you
 
 Whenever a new repository is created in your followed organizations. The activity will be added to your main GitHub feed.
 
-![Activity display](https://followgithub.org/images/github-new-repo.png)
+![Activity display](https://toppng.com/uploads/preview/git-repository-icon-github-repo-icon-svg-115534438372aunh6vf0u.png)
 
 ## Contribute
 
