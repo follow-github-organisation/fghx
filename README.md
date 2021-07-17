@@ -23,7 +23,7 @@ We hope that GitHub will notice and implement this [long-awaited feature request
 
 Go to an organization page, click on the "Follow" button in the top right if you want to see the new activities by that organization in your feed.
 
-![Following an organization](https://followgithub.org/images/github-follow-action.gif)
+![Following an organization](https://follow-github-organisation.github.io/images/github-follow-action.gif)
 
 ## Where will the activity be shown?
 
