@@ -6,7 +6,7 @@
 > Browser extension for [Follow GitHub Organization](https://tinyurl.com/followgithub)
 
 The native GitHub experience doesn't provide a mechanism to follow an organization the way we follow a user account.
-[Follow GitHub Organization](https://followgithub.org) gives you ~wings~ the power you deserve.
+[Follow GitHub Organization](https://tinyurl.com/followgithub) gives you ~wings~ the power you deserve.
 
 We hope that GitHub will notice and implement this [long-awaited feature request](https://github.com/isaacs/github/issues/50).
 
