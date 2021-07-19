@@ -3,7 +3,7 @@
 [link-cws]: https://chrome.google.com/webstore/detail/follow-github-organizatio/nihhgppianmnaaomafdoemomnnpdnfjn "Version published on Chrome Web Store"
 [link-fao]: https://addons.mozilla.org/en-US/firefox/addon/follow-github-organization/ "Version published on Firefox Add-ons"
 
-> Browser extension for [Follow GitHub Organization](https://followgithub.org)
+> Browser extension for [Follow GitHub Organization](https://tinyurl.com/followgithub)
 
 The native GitHub experience doesn't provide a mechanism to follow an organization the way we follow a user account.
 [Follow GitHub Organization](https://followgithub.org) gives you ~wings~ the power you deserve.
